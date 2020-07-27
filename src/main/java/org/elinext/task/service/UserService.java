@@ -1,4 +1,4 @@
-package org.elinext.test.service;
+package org.elinext.task.service;
 
 public interface UserService {
 }

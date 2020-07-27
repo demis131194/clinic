@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/sql/postgresql/dbinit.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/postgresql/initdata.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/postgresql/populate.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/db/test-init-data.sql" dialect="PostgreSQL" />
   </component>
 </project>

@@ -1,41 +1,43 @@
-package org.elinext.test.model;
+package org.elinext.task.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "reservations")
-public class Reservation {
+public class Reservation implements Serializable {
+
+    private static final long serialVersionUID = -9199294265562243435L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reservationId")
+    @Column(name = "reservation_id")
     private Long reservationId;
 
-    @Column(name = "operationName")
+    @Column(name = "operation_name")
     private String operationName;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "startTime")
+    @Column(name = "start_time")
     private LocalDateTime startTime;
 
-    @Column(name = "endTime")
+    @Column(name = "end_time")
     private LocalDateTime endTime;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private ReservationStatus status;
 
-    @Column(name = "userId")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "roomId")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "roomId")
+    @JoinColumn(name = "room_id")
     private Room room;
 
     public Reservation() {
@@ -103,5 +105,21 @@ public class Reservation {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return Objects.equals(reservationId, that.reservationId) &&
+                Objects.equals(operationName, that.operationName) &&
+                Objects.equals(user, that.user) &&
+                Objects.equals(room, that.room);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reservationId, operationName, user, room);
     }
 }

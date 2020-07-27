@@ -1,6 +1,6 @@
-package org.elinext.test.repository;
+package org.elinext.task.repository;
 
-import org.elinext.test.model.User;
+import org.elinext.task.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package org.elinext.test.controller;
+package org.elinext.task.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

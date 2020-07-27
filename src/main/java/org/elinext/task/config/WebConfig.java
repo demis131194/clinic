@@ -1,4 +1,4 @@
-package org.elinext.test.config;
+package org.elinext.task.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

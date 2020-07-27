@@ -1,4 +1,4 @@
-package org.elinext.test.repository;
+package org.elinext.task.repository;
 
 public interface ReservationRepository {
 }
