@@ -32,7 +32,6 @@ public class SpringTestConfig {
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
-//        entityManagerFactoryBean.setPersistenceUnitName("jpaData");
         entityManagerFactoryBean.setPackagesToScan(ENTITY_PATH);
 
         Properties properties = new Properties();

@@ -16,7 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("org.elinext.task")
+@ComponentScan(basePackages = "org.elinext.task")
 @EnableJpaRepositories(basePackages = "org.elinext.task.repository")
 @EnableTransactionManagement
 public class SpringConfig {
@@ -29,7 +29,7 @@ public class SpringConfig {
         return new HikariDataSource(hikariConfig);
     }
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(HikariDataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
