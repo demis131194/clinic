@@ -29,10 +29,25 @@ public class UserRepositoryTest {
 
     @Test
     public void saveTest() {
-        User user = new User(1L, "Dima", "Dmitrievich", UserRole.DOCTOR);
+        User user = new User(null, "Dima", "Dmitrievich", UserRole.DOCTOR);
         userRepository.saveAndFlush(user);
         User actualUser = entityManager.find(User.class, user.getUserId());
-
         assertEquals(user, actualUser);
+    }
+
+    @Test
+    public void updateTest() {
+        User user = new User(2L, "Petya", "Petr", UserRole.DOCTOR);
+        userRepository.saveAndFlush(user);
+        User actualUser = entityManager.find(User.class, user.getUserId());
+        assertEquals(user, actualUser);
+    }
+
+    @Test
+    public void deleteTest() {
+        int expectedSize = 2;
+        userRepository.deleteById(2L);
+        int actualSize = userRepository.findAll().size();
+        assertEquals(expectedSize, actualSize);
     }
 }

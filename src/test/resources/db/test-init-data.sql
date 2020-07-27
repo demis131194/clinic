@@ -48,12 +48,12 @@ CREATE TABLE public.reservations
     PRIMARY KEY (reservation_id),
     CONSTRAINT reservation_userId_foreign_key_constraint FOREIGN KEY (user_id)
         REFERENCES public.users ("user_id") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     CONSTRAINT reservation_roomId_foreign_key_constraint FOREIGN KEY ("room_id")
         REFERENCES public.rooms ("room_id") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 )
     WITH (
         OIDS = FALSE
