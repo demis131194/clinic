@@ -32,15 +32,26 @@ public class Reservation implements Serializable {
     @Column(name = "status")
     private ReservationStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
     private Room room;
 
     public Reservation() {
+    }
+
+    public Reservation(Long reservationId, String operationName, String description, LocalDateTime startTime, LocalDateTime endTime, ReservationStatus status, User user, Room room) {
+        this.reservationId = reservationId;
+        this.operationName = operationName;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.status = status;
+        this.user = user;
+        this.room = room;
     }
 
     public Long getReservationId() {

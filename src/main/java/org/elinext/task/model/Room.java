@@ -25,6 +25,24 @@ public class Room implements Serializable {
     public Room() {
     }
 
+    public Room(Long id, String roomName, RoomStatus roomStatus) {
+        this.roomId = id;
+        this.roomName = roomName;
+        this.roomStatus = roomStatus;
+    }
+
+    public Room(String roomName, RoomStatus roomStatus) {
+        this(null, roomName, roomStatus);
+    }
+
+    public Room(Long id, String roomName) {
+        this(id, roomName, RoomStatus.FREE);
+    }
+
+    public Room(String roomName) {
+        this(null, roomName, RoomStatus.FREE);
+    }
+
     public Long getRoomId() {
         return roomId;
     }

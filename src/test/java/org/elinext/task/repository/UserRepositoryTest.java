@@ -1,9 +1,8 @@
-package org.elinext.task.repositorytest;
+package org.elinext.task.repository;
 
 import org.elinext.task.config.SpringTestConfig;
 import org.elinext.task.model.User;
 import org.elinext.task.model.UserRole;
-import org.elinext.task.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

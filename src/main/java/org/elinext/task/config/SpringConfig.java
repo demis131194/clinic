@@ -17,11 +17,11 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "org.elinext.task")
-@EnableJpaRepositories(basePackages = "org.elinext.task.repository")
+@EnableJpaRepositories(basePackages = "org.elinext.task.repository", entityManagerFactoryRef = "entityManagerFactory")
 @EnableTransactionManagement
 public class SpringConfig {
     private static final String DATA_SOURCE_PROPERTY = "/db/datasource.properties";
-    private static final String ENTITY_PATH = "org.elinext.test.model";
+    private static final String ENTITY_PATH = "org.elinext.task.model";
 
     @Bean(destroyMethod = "close")
     public HikariDataSource dataSource() {
