@@ -30,9 +30,11 @@ public class Reservation {
 
     @Column(name = "userId")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column(name = "roomId")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "roomId")
     private Room room;
 }
