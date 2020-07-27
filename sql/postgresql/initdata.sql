@@ -1,9 +1,17 @@
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS rooms;
+
+DROP SEQUENCE IF EXISTS reservations_reservationId_seq;
+DROP SEQUENCE IF EXISTS rooms_roomId_seq;
+DROP SEQUENCE IF EXISTS users_userId_seq;
+
 CREATE TABLE public.users
 (
-    "userId" bigint NOT NULL,
+    "userId" serial NOT NULL,
     name character varying NOT NULL,
     surname character varying NOT NULL,
-    "position" bit varying NOT NULL,
+    "position" character varying NOT NULL,
     PRIMARY KEY ("userId")
 )
 WITH (
@@ -15,9 +23,9 @@ ALTER TABLE public.users
 
 CREATE TABLE public.rooms
 (
-    "roomId" bigint NOT NULL,
+    "roomId" serial NOT NULL,
     "roomName" character varying NOT NULL,
-    status character varying NOT NULL,
+    status character varying NOT NULL DEFAULT 'FREE',
     PRIMARY KEY ("roomId")
 )
     WITH (
@@ -29,7 +37,7 @@ ALTER TABLE public.rooms
 
 CREATE TABLE public.reservations
 (
-    "reservationId" bigint NOT NULL,
+    "reservationId" serial NOT NULL,
     "operationName" character varying NOT NULL,
     "description" text,
     "startTime" timestamp with time zone NOT NULL,
