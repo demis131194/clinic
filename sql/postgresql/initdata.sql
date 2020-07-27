@@ -11,7 +11,7 @@ CREATE TABLE public.users
     "userId" serial NOT NULL,
     name character varying NOT NULL,
     surname character varying NOT NULL,
-    "position" character varying NOT NULL,
+    "userRole" character varying NOT NULL,
     PRIMARY KEY ("userId")
 )
 WITH (
