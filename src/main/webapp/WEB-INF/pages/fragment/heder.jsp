@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Header</title>
+    <title>Clinic</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 </head>
@@ -40,10 +40,8 @@
                         Users
                     </a>
                     <div class="dropdown-menu" aria-labelledby="usersDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/users">User view</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/save-user">Create user</a>
                     </div>
                 </li>
             </ul>
