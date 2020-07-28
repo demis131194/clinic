@@ -27,8 +27,8 @@
                         Rooms
                     </a>
                     <div class="dropdown-menu" aria-labelledby="roomsDropdown">
-                        <a class="dropdown-item" href="#">Room view</a>
-                        <a class="dropdown-item" href="#">Create room</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/rooms">Room view</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/save-room">Create room</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">

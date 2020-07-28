@@ -5,6 +5,7 @@ import org.elinext.task.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,9 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public List<Room> findAll() {
-        return roomRepository.findAll();
+        List<Room> rooms = roomRepository.findAll();
+        rooms.sort(Comparator.comparing(Room::getRoomId));
+        return rooms;
     }
 
     @Override

@@ -11,26 +11,22 @@
 <div class="container border rounded border-dark bg-light p-5 mt-5">
     <div class="row">
         <div class="col-12 text-center">
-            <h3>Save user</h3>
+            <h3>Save room</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <form:form name="createUserForm" action="${pageContext.request.contextPath}/save-user" method="POST" accept-charset="UTF-8" modelAttribute="user">
-                <form:hidden path="userId" value=""/>
+            <form:form name="createRoomForm" action="${pageContext.request.contextPath}/save-room" method="POST" accept-charset="UTF-8" modelAttribute="room">
+                <form:hidden path="roomId" value=""/>
                 <div class="form-group">
-                    <form:label for="userName" path="name">User name:</form:label>
-                    <form:input type="text" class="form-control" id="userName" placeholder="Enter name" path="name"/>
+                    <form:label for="roomName" path="roomName">Room name:</form:label>
+                    <form:input type="text" class="form-control" id="roomName" placeholder="Enter name" path="roomName"/>
                 </div>
                 <div class="form-group">
-                    <form:label for="userSurname" path="surname">User surname:</form:label>
-                    <form:input type="text" class="form-control" id="userSurname" placeholder="Enter surname" path="surname"/>
-                </div>
-                <div class="form-group">
-                    <form:label for="userRole" path="userRole">Choose user role:</form:label>
-                    <form:select class="form-control" id="userRole" path="userRole">
-                        <c:forEach items="${roles}" var="role">
-                            <form:option value="${role}">${role.name()}</form:option>
+                    <form:label for="roomStatus" path="roomStatus">Choose user role</form:label>
+                    <form:select class="form-control" id="roomStatus" path="roomStatus">
+                        <c:forEach items="${statuses}" var="status">
+                            <form:option value="${status}">${status.name()}</form:option>
                         </c:forEach>
                     </form:select>
                 </div>
