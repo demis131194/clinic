@@ -1,5 +1,6 @@
 package org.elinext.task.controller;
 
+import org.elinext.task.exception.ReservationSaveException;
 import org.elinext.task.model.*;
 import org.elinext.task.service.ReservationService;
 import org.elinext.task.service.RoomService;
@@ -113,11 +114,21 @@ public class MainController {
         return "redirect:reservations";
     }
 
+    @ExceptionHandler(ReservationSaveException.class)
+    public ModelAndView exceptionHandler(Model model, ReservationSaveException e) {
+        ModelAndView modelAndView = new ModelAndView("reservation-view");
+        List<Reservation> allReservation = reservationService.findAll();
+        model.addAttribute("reservations", allReservation);
+        model.addAttribute("error", e.getMessage());
+        return modelAndView;
+    }
+
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(Model model, Exception e) {
         ModelAndView modelAndView = new ModelAndView("error");
         model.addAttribute("error", e);
         return modelAndView;
     }
+
 
 }

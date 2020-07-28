@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
@@ -19,6 +20,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "org.elinext.task")
 @EnableJpaRepositories(basePackages = "org.elinext.task.repository", entityManagerFactoryRef = "entityManagerFactory")
 @EnableTransactionManagement
+@EnableScheduling
 public class SpringConfig {
     private static final String DATA_SOURCE_PROPERTY = "/db/datasource.properties";
     private static final String ENTITY_PATH = "org.elinext.task.model";

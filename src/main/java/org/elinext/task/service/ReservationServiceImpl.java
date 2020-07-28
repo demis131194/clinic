@@ -1,7 +1,9 @@
 package org.elinext.task.service;
 
+import org.elinext.task.exception.ReservationSaveException;
 import org.elinext.task.model.Reservation;
 import org.elinext.task.repository.ReservationRepository;
+import org.elinext.task.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +35,45 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation save(Reservation reservation) {
+        Long reservationId = reservation.getReservationId();
+
+        if (reservationId == null) {
+            return reservationRepository.save(reservation);
+        }
+
+        List<Reservation> allReservationsByUser = reservationRepository.findAllByUser(reservation.getUser());
+
+        boolean isUserFree = isFree(reservation, allReservationsByUser);
+
+        if (!isUserFree) {
+            throw new ReservationSaveException(String.format("Can't save reservation id = %d! User %d not free!", reservationId, reservation.getUser().getUserId()));
+        }
+
+        List<Reservation> allReservationsByRoom = reservationRepository.findAllByRoom(reservation.getRoom());
+
+        boolean isRoomFree = isFree(reservation, allReservationsByRoom);
+
+        if (!isRoomFree) {
+            throw new ReservationSaveException(String.format("Can't save reservation id = %d! Room %s not free!", reservationId, reservation.getRoom().getRoomName()));
+        }
+
         return reservationRepository.save(reservation);
+
     }
 
     @Override
     public void deleteById(Long id) {
         reservationRepository.deleteById(id);
+    }
+
+    private boolean isFree(Reservation reservation, List<Reservation> allReservationsByUser) {
+        return allReservationsByUser.stream()
+                .noneMatch(curReserv -> {
+                    if (reservation.getReservationId().equals(curReserv.getReservationId())) {
+                        return false;
+                    }
+                    return TimeUtil.isCross(reservation.getStartTime(), reservation.getEndTime(),
+                            curReserv.getStartTime(), curReserv.getEndTime());
+                });
     }
 }

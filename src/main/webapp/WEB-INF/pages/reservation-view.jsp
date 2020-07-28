@@ -15,6 +15,15 @@
             <h3>Reservations view</h3>
         </div>
     </div>
+    <c:if test="${error != null}">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="bg-danger text-center">
+                    <h4>${error}</h4>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <div class="row">
         <div class="col-12">
             <table class="table table-bordered mt-3">
@@ -39,11 +48,10 @@
                         <td>${reservation.operationName}</td>
                         <td>${reservation.description}</td>
                         <td>${reservation.startTime}</td>
-<%--                        <td><spring: name="nane" value="${reservation.startTime}"/></td>--%>
                         <td>${reservation.endTime}</td>
                         <td>${reservation.status.name()}</td>
-                        <td>${reservation.user.name} ${reservation.user.surname}</td>
-                        <td>${reservation.room.roomName}</td>
+                        <td>${reservation.user.userId} ${reservation.user.name} ${reservation.user.surname}</td>
+                        <td>${reservation.room.roomId} ${reservation.room.roomName}</td>
                         <td>
                             <div class="align-content-center">
                                 <form name="updateReservationForm" action="${pageContext.request.contextPath}/save-reservation"
