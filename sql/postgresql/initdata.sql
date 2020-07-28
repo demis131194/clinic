@@ -6,6 +6,9 @@ DROP SEQUENCE IF EXISTS reservations_reservationId_seq;
 DROP SEQUENCE IF EXISTS rooms_roomId_seq;
 DROP SEQUENCE IF EXISTS users_userId_seq;
 
+DROP TRIGGER IF EXISTS reservation_user_check_trigger ON reservations;
+DROP TRIGGER IF EXISTS reservation_room_check_trigger ON reservations;
+
 CREATE TABLE public.users
 (
     user_id serial NOT NULL,
@@ -61,3 +64,45 @@ CREATE TABLE public.reservations
 
 ALTER TABLE public.reservations
     OWNER to postgres;
+
+
+CREATE OR REPLACE FUNCTION check_reservation_on_correct_date_for_user() RETURNS trigger AS
+$$
+DECLARE
+    number bigint;
+BEGIN
+    SELECT COUNT(*) INTO number FROM reservations r
+    WHERE (r.user_id=NEW.user_id)
+      AND (r.start_time BETWEEN NEW.start_time AND NEW.end_time)
+      AND (r.end_time BETWEEN NEW.start_time AND NEW.end_time);
+    IF number>0 THEN RAISE EXCEPTION 'Incorrect start_time or end_time for user';
+    END IF;
+    RETURN NEW;
+END;
+$$
+    LANGUAGE plpgsql;
+
+CREATE TRIGGER reservation_user_check_trigger
+    BEFORE INSERT OR UPDATE ON reservations FOR EACH ROW
+EXECUTE PROCEDURE check_reservation_on_correct_date_for_user();
+
+
+CREATE OR REPLACE FUNCTION check_reservation_on_correct_date_for_room() RETURNS trigger AS
+$$
+DECLARE
+    number bigint;
+BEGIN
+    SELECT COUNT(*) INTO number FROM reservations r
+    WHERE (r.room_id=NEW.room_id)
+      AND (r.start_time BETWEEN NEW.start_time AND NEW.end_time)
+      AND (r.end_time BETWEEN NEW.start_time AND NEW.end_time);
+    IF number>0 THEN RAISE EXCEPTION 'Incorrect start_time or end_time for room';
+    END IF;
+    RETURN NEW;
+END;
+$$
+    LANGUAGE plpgsql;
+
+CREATE TRIGGER reservation_room_check_trigger
+    BEFORE INSERT OR UPDATE ON reservations FOR EACH ROW
+EXECUTE PROCEDURE check_reservation_on_correct_date_for_room();
