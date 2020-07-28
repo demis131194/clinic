@@ -18,10 +18,8 @@
                         Reservations
                     </a>
                     <div class="dropdown-menu" aria-labelledby="reservationsDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Reservation view</a>
+                        <a class="dropdown-item" href="#">Create reservation</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">
@@ -29,10 +27,8 @@
                         Rooms
                     </a>
                     <div class="dropdown-menu" aria-labelledby="roomsDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Room view</a>
+                        <a class="dropdown-item" href="#">Create room</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">
