@@ -1,9 +1,6 @@
 package org.elinext.task.controller;
 
-import org.elinext.task.model.Room;
-import org.elinext.task.model.RoomStatus;
-import org.elinext.task.model.User;
-import org.elinext.task.model.UserRole;
+import org.elinext.task.model.*;
 import org.elinext.task.service.ReservationService;
 import org.elinext.task.service.RoomService;
 import org.elinext.task.service.UserService;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -86,6 +84,35 @@ public class MainController {
     public String deleteRoom(@RequestParam Long userId) {
         roomService.deleteById(userId);
         return "redirect:rooms";
+    }
+
+    @GetMapping("/reservations")
+    public String reservations(Model model) {
+        List<Reservation> allReservation = reservationService.findAll();
+        model.addAttribute("reservations", allReservation);
+        return "reservation-view";
+    }
+
+    @GetMapping("/save-reservation")
+    public String updateReservation(Model model, @RequestParam(value = "reservationId", required = false, defaultValue = "0") Long reservationId) {
+        Optional<Reservation> reservationBtId = reservationService.findById(reservationId);
+        model.addAttribute("reservation", reservationBtId.orElse(new Reservation()));
+        model.addAttribute("statuses", ReservationStatus.values());
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("rooms", roomService.findAll());
+        return "reservation-save";
+    }
+
+    @PostMapping("/save-reservation")
+    public String saveReservation(@ModelAttribute("reservation") Reservation reservation) {
+        reservationService.save(reservation);
+        return "redirect:reservations";
+    }
+
+    @GetMapping("/delete-reservation")
+    public String deleteReservation(@RequestParam Long userId) {
+        reservationService.deleteById(userId);
+        return "redirect:reservations";
     }
 
 }

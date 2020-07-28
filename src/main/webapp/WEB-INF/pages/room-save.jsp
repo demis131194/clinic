@@ -8,7 +8,7 @@
 </head>
 <body>
 <c:import url="fragment/heder.jsp"/>
-<div class="container border rounded border-dark bg-light p-5 mt-5">
+<div class="container border rounded border-dark bg-light p-5 mt-5 min-vh-100">
     <div class="row">
         <div class="col-12 text-center">
             <h3>Save room</h3>
@@ -23,11 +23,18 @@
                     <form:input type="text" class="form-control" id="roomName" placeholder="Enter name" path="roomName"/>
                 </div>
                 <div class="form-group">
-                    <form:label for="roomStatus" path="roomStatus">Choose user role</form:label>
+                    <form:label for="roomStatus" path="roomStatus">Room status</form:label>
                     <form:select class="form-control" id="roomStatus" path="roomStatus">
-                        <c:forEach items="${statuses}" var="status">
-                            <form:option value="${status}">${status.name()}</form:option>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${room.roomId != null}">
+                                <c:forEach items="${statuses}" var="status">
+                                    <form:option value="${status}">${status.name()}</form:option>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <form:option value="${statuses[0]}">${statuses[0].name()}</form:option>
+                            </c:otherwise>
+                        </c:choose>
                     </form:select>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>

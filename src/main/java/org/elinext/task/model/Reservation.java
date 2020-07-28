@@ -1,5 +1,7 @@
 package org.elinext.task.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -22,9 +24,11 @@ public class Reservation implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "start_time")
     private LocalDateTime startTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "end_time")
     private LocalDateTime endTime;
 

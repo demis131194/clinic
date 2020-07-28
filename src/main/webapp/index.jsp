@@ -8,7 +8,7 @@
 </head>
 <body>
 <c:import url="WEB-INF/pages/fragment/heder.jsp"/>
-<div class="container border rounded border-dark bg-light p-5 mt-5 h-75">
+<div class="container border rounded border-dark bg-light p-5 mt-5 h-75 min-vh-100">
     <div class="row">
         <div class="col-4 offset-4 text-center">
             <h2>Welcome!</h2>

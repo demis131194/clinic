@@ -18,8 +18,8 @@
                         Reservations
                     </a>
                     <div class="dropdown-menu" aria-labelledby="reservationsDropdown">
-                        <a class="dropdown-item" href="#">Reservation view</a>
-                        <a class="dropdown-item" href="#">Create reservation</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/reservations">Reservation view</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/save-reservation">Create reservation</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">
