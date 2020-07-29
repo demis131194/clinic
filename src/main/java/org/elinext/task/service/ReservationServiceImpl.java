@@ -46,7 +46,7 @@ public class ReservationServiceImpl implements ReservationService {
         boolean isUserFree = isFree(reservation, allReservationsByUser);
 
         if (!isUserFree) {
-            throw new ReservationSaveException(String.format("Can't save reservation id = %d! User %d not free!", reservationId, reservation.getUser().getUserId()));
+            throw new ReservationSaveException(String.format("Can't save reservation id = %d! User id - %d not free!", reservationId, reservation.getUser().getUserId()));
         }
 
         List<Reservation> allReservationsByRoom = reservationRepository.findAllByRoom(reservation.getRoom());
@@ -54,7 +54,7 @@ public class ReservationServiceImpl implements ReservationService {
         boolean isRoomFree = isFree(reservation, allReservationsByRoom);
 
         if (!isRoomFree) {
-            throw new ReservationSaveException(String.format("Can't save reservation id = %d! Room %s not free!", reservationId, reservation.getRoom().getRoomName()));
+            throw new ReservationSaveException(String.format("Can't save reservation id = %d! Room id - %d not free!", reservationId, reservation.getRoom().getRoomId()));
         }
 
         return reservationRepository.save(reservation);

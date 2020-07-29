@@ -6,10 +6,6 @@ DROP SEQUENCE IF EXISTS reservations_reservationId_seq;
 DROP SEQUENCE IF EXISTS rooms_roomId_seq;
 DROP SEQUENCE IF EXISTS users_userId_seq;
 
--- DROP TRIGGER IF EXISTS reservation_user_check_trigger ON reservations;
--- DROP TRIGGER IF EXISTS reservation_room_check_trigger ON reservations;
--- DROP TRIGGER IF EXISTS reservation_lock_room_trigger ON reservations;
-
 CREATE TABLE public.users
 (
     user_id serial NOT NULL,
