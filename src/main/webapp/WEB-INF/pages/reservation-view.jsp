@@ -50,8 +50,8 @@
                         <td>${reservation.startTime}</td>
                         <td>${reservation.endTime}</td>
                         <td>${reservation.status.name()}</td>
-                        <td>${reservation.user.userId} ${reservation.user.name} ${reservation.user.surname}</td>
-                        <td>${reservation.room.roomId} ${reservation.room.roomName}</td>
+                        <td> Id - ${reservation.user.userId} <br/> ${reservation.user.name} ${reservation.user.surname}</td>
+                        <td> Id - ${reservation.room.roomId}  <br/> ${reservation.room.roomName}</td>
                         <td>
                             <div class="align-content-center">
                                 <form name="updateReservationForm" action="${pageContext.request.contextPath}/save-reservation"
